@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Breathing Trainer</title>
+
+<!-- ⚡ إعدادات PWA / Fullscreen -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+
+<style>
+html, body{
+    margin:0;
+    padding:0;
+    height:100%;
+    overflow:hidden; /* منع السّكرول */
+    background:#0f1226;
+    font-family:Arial;
+    color:white;
+}
+
+body{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+/* معلومات الجلسة أعلى الدائرة */
+.info{
+    height:40px;
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:40px;
+}
+
+/* مساحة ثابتة لحركة الدائرة */
+.stage{
+    height:320px;
+    width:320px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.circle{
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#00d2ff,#5e1ad5);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    transition:transform linear;
+    box-shadow:0 0 50px rgba(0,210,255,.5);
+}
+
+.inner{
+    font-size:24px;
+    line-height:1.5;
+}
+
+.controls{
+    margin-top:40px;
+}
+
+button, select, input{
+    margin:5px;
+    padding:10px;
+    border-radius:8px;
+    border:none;
+    font-size:15px;
+}
+
+.hidden{
+    display:none;
+}
+
+.stopBtn{
+    margin-top:40px;
+    padding:14px 28px;
+    font-size:18px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+/* إزالة أي scroll إضافي عند الضغط أو السحب */
+*{
+    touch-action:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="info" id="sessionInfo"></div>
+
+<div class="stage">
+    <div class="circle" id="circle">
+        <div class="inner" id="display">
+            ابدأ التمرين
+        </div>
+    </div>
+</div>
+
+<div class="controls" id="controls">
+
+<select id="exercise">
+<option value="4,7,8">تمرين 4-7-8</option>
+<option value="4,4,6">تمرين 4-4-6</option>
+</select>
+
+<select id="mode">
+<option value="time">بالوقت (دقائق)</option>
+<option value="cycles">بعدد الدورات</option>
+</select>
+
+<input id="amount" type="number" value="3" min="1">
+
+<br>
+<button onclick="start()">ابدأ</button>
+
+</div>
+
+<button id="stopBtn" class="stopBtn hidden" onclick="stop()">إيقاف</button>
+
+<script>
+const circle=document.getElementById("circle");
+const display=document.getElementById("display");
+const controls=document.getElementById("controls");
+const stopBtn=document.getElementById("stopBtn");
+const info=document.getElementById("sessionInfo");
+
+let running=false;
+
+function wait(ms){ return new Promise(r=>setTimeout(r,ms)); }
+function formatTime(sec){ let m=Math.floor(sec/60); let s=sec%60; return `${m}:${s.toString().padStart(2,'0')}`; }
+
+async function phase(name,seconds,scale,cycle,totalCycles,startTime,totalTime){
+    circle.style.transitionDuration=seconds+"s";
+    circle.style.transform="scale("+scale+")";
+
+    for(let i=seconds;i>0;i--){
+        display.innerHTML=`${name}<br>${i}`;
+        if(totalTime){
+            let elapsed=Math.floor((Date.now()-startTime)/1000);
+            let remain=Math.max(totalTime-elapsed,0);
+            info.innerText=`الوقت المتبقي: ${formatTime(remain)}`;
+        }else{
+            info.innerText=`الدورة ${cycle} / ${totalCycles}`;
+        }
+        await wait(1000);
+        if(!running) return false;
+    }
+    return true;
+}
+
+async function start(){
+    if(running) return;
+    running=true;
+    controls.classList.add("hidden");
+    stopBtn.classList.remove("hidden");
+
+    const ex=document.getElementById("exercise").value.split(",");
+    const inhale=parseInt(ex[0]);
+    const hold=parseInt(ex[1]);
+    const exhale=parseInt(ex[2]);
+
+    const mode=document.getElementById("mode").value;
+    const amount=parseInt(document.getElementById("amount").value);
+
+    let cycles=0;
+    let totalCycles=null;
+    let totalTime=null;
+    let startTime=Date.now();
+
+    if(mode==="time"){ totalTime=amount*60; }
+    else{ totalCycles=amount; }
+
+    while(running){
+        if(totalTime){ let elapsed=(Date.now()-startTime)/1000; if(elapsed>=totalTime) break; }
+        if(totalCycles && cycles>=totalCycles) break;
+
+        cycles++;
+        if(!await phase("شهيق",inhale,1.8,cycles,totalCycles,startTime,totalTime)) break;
+        if(!await phase("ثبات",hold,1.8,cycles,totalCycles,startTime,totalTime)) break;
+        if(!await phase("زفير",exhale,1,cycles,totalCycles,startTime,totalTime)) break;
+    }
+    stop();
+}
+
+function stop(){
+    running=false;
+    controls.classList.remove("hidden");
+    stopBtn.classList.add("hidden");
+    display.innerHTML="انتهى التمرين";
+    info.innerText="";
+    circle.style.transform="scale(1)";
+}
+</script>
+
+</body>
+</html>
