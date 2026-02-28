@@ -4,21 +4,20 @@
 <meta charset="UTF-8">
 <title>Breathing Trainer</title>
 
-<!-- ⚡ إعدادات PWA / Fullscreen -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-180.png">
 
 <style>
 html, body{
     margin:0;
     padding:0;
     height:100%;
-    overflow:hidden; /* منع السّكرول */
-    background:#0f1226;
-    font-family:Arial;
-    color:white;
+    overflow:hidden;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 body{
@@ -26,9 +25,21 @@ body{
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    background:#0f1226;
+    color:white;
+    transition: background 0.3s, color 0.3s;
 }
 
-/* معلومات الجلسة أعلى الدائرة */
+/* Light/Dark Mode */
+@media (prefers-color-scheme: light){
+    body{ background:#f5f7fa; color:#000; }
+    .circle{ background:linear-gradient(135deg,#339DFF,#0077FF); box-shadow:0 0 50px rgba(0,119,255,0.5);}
+}
+@media (prefers-color-scheme: dark){
+    body{ background:#0f1226; color:white; }
+    .circle{ background:linear-gradient(135deg,#00d2ff,#5e1ad5); box-shadow:0 0 50px rgba(0,210,255,0.5);}
+}
+
 .info{
     height:40px;
     font-size:22px;
@@ -36,7 +47,6 @@ body{
     margin-bottom:40px;
 }
 
-/* مساحة ثابتة لحركة الدائرة */
 .stage{
     height:320px;
     width:320px;
@@ -49,13 +59,11 @@ body{
     width:200px;
     height:200px;
     border-radius:50%;
-    background:linear-gradient(135deg,#00d2ff,#5e1ad5);
     display:flex;
     justify-content:center;
     align-items:center;
     text-align:center;
-    transition:transform linear;
-    box-shadow:0 0 50px rgba(0,210,255,.5);
+    transition:transform linear 0.3s;
 }
 
 .inner{
@@ -87,7 +95,6 @@ button, select, input{
     cursor:pointer;
 }
 
-/* إزالة أي scroll إضافي عند الضغط أو السحب */
 *{
     touch-action:none;
 }
@@ -100,14 +107,11 @@ button, select, input{
 
 <div class="stage">
     <div class="circle" id="circle">
-        <div class="inner" id="display">
-            ابدأ التمرين
-        </div>
+        <div class="inner" id="display">ابدأ التمرين</div>
     </div>
 </div>
 
 <div class="controls" id="controls">
-
 <select id="exercise">
 <option value="4,7,8">تمرين 4-7-8</option>
 <option value="4,4,6">تمرين 4-4-6</option>
@@ -119,15 +123,25 @@ button, select, input{
 </select>
 
 <input id="amount" type="number" value="3" min="1">
-
 <br>
 <button onclick="start()">ابدأ</button>
-
 </div>
 
 <button id="stopBtn" class="stopBtn hidden" onclick="stop()">إيقاف</button>
 
 <script>
+// تقييد iPhone فقط
+if(!/iPhone|iPad|iPod/i.test(navigator.userAgent)){
+    document.body.innerHTML="<h1>هذا التطبيق متاح فقط على iPhone/iPad</h1>";
+}
+
+// طلب إضافة الشاشة الرئيسية
+window.addEventListener('load',()=>{
+    if(navigator.standalone===false){
+        setTimeout(()=>alert("اضف التطبيق إلى الشاشة الرئيسية لتجربة أفضل!"),500);
+    }
+});
+
 const circle=document.getElementById("circle");
 const display=document.getElementById("display");
 const controls=document.getElementById("controls");
