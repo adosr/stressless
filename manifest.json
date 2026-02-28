@@ -2,7 +2,7 @@
   "name": "Breathing Trainer",
   "short_name": "BreathApp",
   "description": "تطبيق تمارين التنفس بطريقة iPhone native",
-  "start_url": "/index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#0f1226",
   "theme_color": "#00D2FF",
