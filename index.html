@@ -10,7 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-180.png">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/liquid-glass-ui/dist/liquid-glass-ui.min.css">
+
 <style>
 html, body{
     margin:0;
@@ -112,22 +112,22 @@ button, select, input{
 </div>
 
 <div class="controls" id="controls">
-<select id="exercise" class="lg-select">
+<select id="exercise">
 <option value="4,7,8">تمرين 4-7-8</option>
 <option value="4,4,6">تمرين 4-4-6</option>
 </select>
 
-<select id="mode" class="lg-select">
+<select id="mode>
 <option value="time">بالوقت (دقائق)</option>
 <option value="cycles">بعدد الدورات</option>
 </select>
 
 <input id="amount" type="number" value="3" min="1" class="lg-select">
 <br>
-<button class="lg-btn" onclick="start()">ابدأ</button>
+<button onclick="start()">ابدأ</button>
 </div>
 
-<button id="stopBtn" class="lg-btn hidden" onclick="stop()">إيقاف</button>
+<button id="stopBtn" class="stopBtn hidden" onclick="stop()">إيقاف</button>
 
 <script>
 // تقييد iPhone فقط
