@@ -28,7 +28,10 @@ and (orientation: portrait)">
 <style>
 html, body{
     margin:0;
-    padding:0;
+    padding-top: calc(12px + env(safe-area-inset-top));
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    padding-left: calc(12px + env(safe-area-inset-left));
+    padding-right: calc(12px + env(safe-area-inset-right));
     height:100%;
     overflow:hidden; /* منع السّكرول */
     background:#0f1226;
