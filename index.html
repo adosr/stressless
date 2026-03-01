@@ -193,6 +193,12 @@ button, select, input{
 
 <input id="amount" type="number" class="input-text" value="3" min="1">
 
+<div class="slider-container">
+  <input type="range" min="0" max="10" value="3" class="slider" id="amount">
+  <span class="slider-value" id="amount-value"></span>
+</div>
+
+  
 <br>
 <button class="btn-primary" onclick="start()">ابدأ</button>
 
@@ -273,6 +279,16 @@ function stop(){
     info.innerText="";
     circle.style.transform="scale(1)";
 }
+
+var slider = document.getElementById("amount");
+var output = document.getElementById("amount-value");
+output.innerHTML = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+
 </script>
 
 </body>
