@@ -159,6 +159,40 @@ button, select, input{
   border-color: #0077FF;
   box-shadow: 0 0 0 3px rgba(0,119,255,0.2);
 }
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: #d1d5db;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #0077FF;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  margin-top: -12px; /* aligns thumb with track */
+}
+
+.slider-value {
+  width: 36px;
+  text-align: center;
+  font-size: 14px;
+  color: #212238;
+}
   
 /* إزالة أي scroll إضافي عند الضغط أو السحب */
 *{
