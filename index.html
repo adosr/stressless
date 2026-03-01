@@ -102,6 +102,61 @@ button, select, input{
     cursor:pointer;
 }
 
+.btn-primary {
+  background: linear-gradient(135deg, #0077FF, #339DFF);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+  background: #F5F7FA;
+  color: #212238;
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #FF4C4C, #FF2D2D);
+  color: white;
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.input-text {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  font-size: 16px;
+  background: #F5F7FA;
+  color: #212238;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+.input-text:focus {
+  border-color: #0077FF;
+  box-shadow: 0 0 0 3px rgba(0,119,255,0.2);
+}
+  
 /* إزالة أي scroll إضافي عند الضغط أو السحب */
 *{
     touch-action:none;
@@ -123,24 +178,24 @@ button, select, input{
 
 <div class="controls" id="controls">
 
-<select id="exercise">
+<select id="exercise" class="input-text">
 <option value="4,7,8">تمرين 4-7-8</option>
 <option value="4,4,6">تمرين 4-4-6</option>
 </select>
 
-<select id="mode">
+<select id="mode" class="input-text">
 <option value="time">بالوقت (دقائق)</option>
 <option value="cycles">بعدد الدورات</option>
 </select>
 
-<input id="amount" type="number" value="3" min="1">
+<input id="amount" type="number" class="input-text" value="3" min="1">
 
 <br>
-<button onclick="start()">ابدأ</button>
+<button class="btn-primary" onclick="start()">ابدأ</button>
 
 </div>
 
-<button id="stopBtn" class="stopBtn hidden" onclick="stop()">إيقاف</button>
+<button id="stopBtn" class="btn-danger hidden" onclick="stop()">إيقاف</button>
 
 <script>
 const circle=document.getElementById("circle");
