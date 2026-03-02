@@ -46,10 +46,10 @@ color: var(--text);
 }
 
 .app{
-width:100%;
-max-width:420px;
-padding:20px;
-text-align:center;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+height: 100%;
 }
 
 .glass{
