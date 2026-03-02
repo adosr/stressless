@@ -39,10 +39,6 @@ transition: background var(--transition);
 
 body{
 min-height: 100dvh;
-padding-top: env(safe-area-inset-top);
-padding-bottom: env(safe-area-inset-bottom);
-padding-left: env(safe-area-inset-left);
-padding-right: env(safe-area-inset-right);
 display:flex;
 justify-content:center;
 align-items:center;
