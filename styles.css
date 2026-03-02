@@ -1,0 +1,139 @@
+:root {
+
+--bg: linear-gradient(135deg,#dbeafe,#e0f2fe);
+--surface: rgba(255,255,255,0.35);
+--text: #0f172a;
+--primary: #3b82f6;
+--accent: #10b981;
+
+--blur: blur(20px);
+--radius: 24px;
+--transition: 0.4s ease;
+
+}
+
+@media (prefers-color-scheme: dark) {
+:root {
+--bg: linear-gradient(135deg,#0f172a,#0b1120);
+--surface: rgba(255,255,255,0.08);
+--text: #f1f5f9;
+--primary: #60a5fa;
+--accent: #34d399;
+}
+}
+
+* {
+box-sizing: border-box;
+margin:0;
+padding:0;
+touch-action:none;
+}
+
+html,body{
+height:100%;
+overflow:hidden;
+font-family: system-ui, sans-serif;
+transition: background var(--transition);
+}
+
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+background: var(--bg);
+color: var(--text);
+}
+
+.app{
+width:100%;
+max-width:420px;
+padding:20px;
+text-align:center;
+}
+
+.glass{
+background: var(--surface);
+backdrop-filter: var(--blur);
+border-radius: var(--radius);
+padding:20px;
+box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.session-info{
+height:40px;
+font-weight:600;
+margin-bottom:30px;
+}
+
+.stage{
+height:300px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.circle{
+width:220px;
+height:220px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+background: radial-gradient(circle at 30% 30%, var(--primary), var(--accent));
+transition: transform linear, box-shadow var(--transition);
+box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.inner{
+font-size:26px;
+font-weight:600;
+}
+
+.controls{
+margin-top:30px;
+display:flex;
+flex-direction:column;
+gap:16px;
+}
+
+.input{
+padding:12px;
+border-radius:16px;
+border:none;
+background:rgba(255,255,255,0.5);
+font-size:16px;
+}
+
+.slider-container{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+button{
+padding:14px;
+border-radius:18px;
+border:none;
+font-weight:600;
+cursor:pointer;
+transition: all var(--transition);
+}
+
+button:active{
+transform:scale(0.96);
+}
+
+.primary{
+background:var(--primary);
+color:white;
+}
+
+.danger{
+background:#ef4444;
+color:white;
+margin-top:30px;
+}
+
+.hidden{
+display:none;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+ <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Stressless" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<title>Stressless</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png"/>
+<link rel="apple-touch-startup-image"
+href="icon-1290x2796.png"
+media="(device-width: 430px)
+and (device-height: 932px)
+and (-webkit-device-pixel-ratio: 3)
+and (orientation: portrait)">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<main class="app">
+
+<header class="session-info" id="sessionInfo" aria-live="polite"></header>
+
+<section class="stage">
+    <div class="circle" id="circle">
+        <div class="inner" id="display">Start</div>
+    </div>
+</section>
+
+<section class="controls glass" id="controls">
+
+<select id="exercise" class="input">
+<option value="4,7,8">4-7-8</option>
+<option value="4,4,6">4-4-6</option>
+</select>
+
+<select id="mode" class="input">
+<option value="time">Time (Minutes)</option>
+<option value="cycles">Cycles</option>
+</select>
+
+<div class="slider-container">
+<input type="range" min="1" max="10" value="3" id="amount">
+<span id="amount-value">3</span>
+</div>
+
+<button class="btn primary" id="startBtn">Start</button>
+
+</section>
+
+<button class="btn danger hidden" id="stopBtn">Stop</button>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
