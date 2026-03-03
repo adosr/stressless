@@ -6,6 +6,7 @@ const startBtn = document.getElementById("startBtn");
 const info = document.getElementById("sessionInfo");
 const slider = document.getElementById("amount");
 const sliderValue = document.getElementById("amount-value");
+const select = document.getElementById("mode");
 
 let running = false;
 let lang = navigator.language.startsWith("ar") ? "ar" : "en";
@@ -25,7 +26,9 @@ exhale:"Exhale",
 ready:"Ready",
 finished:"Session Complete",
 remaining:"Remaining Time",
-cycle:"Cycle"
+cycle:"Cycle",
+time:"Time (Minutes)",
+cycles:"Cycles"
 },
 ar:{
 start:"ابدأ",
@@ -36,13 +39,19 @@ exhale:"زفير",
 ready:"استعد",
 finished:"انتهى التمرين",
 remaining:"الوقت المتبقي",
-cycle:"الدورة"
+cycle:"الدورة",
+time:"الوقت (دقائق)",
+cycles:"الدورات"
 }
 };
 
 display.innerText = text[lang].start;
 startBtn.innerText = text[lang].start;
 stopBtn.innerText = text[lang].stop;
+
+for (let option of select.options) {
+  option.innerText = text[lang][option.value];
+}
 
 sliderValue.innerText = slider.value;
 slider.oninput = () => sliderValue.innerText = slider.value;
