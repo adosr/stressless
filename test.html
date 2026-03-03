@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soap Bubble 3D</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #74ebd5, #2a5298);
+  font-family: Arial, sans-serif;
+  direction: rtl;
+  overflow: hidden;
+}
+
+.bubble {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* لون شفاف مع تدرج صابوني */
+  background: radial-gradient(circle at 30% 30%,
+      rgba(255,255,255,0.9) 0%,
+      rgba(255,255,255,0.4) 20%,
+      rgba(173,216,230,0.25) 40%,
+      rgba(255,192,203,0.2) 60%,
+      rgba(255,255,255,0.1) 80%,
+      rgba(255,255,255,0.05) 100%);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  box-shadow:
+      inset -20px -30px 60px rgba(0,0,0,0.25),
+      inset 20px 20px 40px rgba(255,255,255,0.6),
+      0 30px 60px rgba(0,0,0,0.3);
+
+  animation: float 5s ease-in-out infinite;
+  transition: 0.4s ease;
+}
+
+/* لمعان الفقاعة */
+.bubble::before {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle,
+      rgba(255,255,255,0.9),
+      rgba(255,255,255,0.3) 60%,
+      transparent 70%);
+  border-radius: 50%;
+  top: 40px;
+  left: 50px;
+  filter: blur(2px);
+}
+
+/* النص داخل الفقاعة */
+.bubble span {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  text-shadow:
+      0 4px 10px rgba(0,0,0,0.5),
+      0 0 20px rgba(255,255,255,0.8);
+}
+
+/* حركة عائمة */
+@keyframes float {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-25px) scale(1.03); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+.bubble:hover {
+  transform: scale(1.07);
+}
+</style>
+</head>
+
+<body>
+
+<div class="bubble">
+  <span>🫧 النص داخل الفقاعة 🫧</span>
+</div>
+
+</body>
+</html>
