@@ -112,10 +112,13 @@ font-size:16px;
 
 .slider-container{
 width: 100%;
-max-width: 100%;
 display:flex;
 align-items:center;
 gap:10px;
+}
+
+.amount{
+width: 100%;
 }
 
 button{
