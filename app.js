@@ -50,7 +50,9 @@ startBtn.innerText = text[lang].start;
 stopBtn.innerText = text[lang].stop;
 
 for (let option of select.options) {
-  option.innerText = text[lang][option.value];
+   if (text[lang][option.value]) {
+    option.innerText = text[lang][option.value];
+   }
 }
 
 sliderValue.innerText = slider.value;
