@@ -96,46 +96,49 @@ box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     position:relative;
 
     background:
-    /* ظل داخلي عميق يعطي 3D */
+    /* تعتيم خفيف جدًا على الحافة (بدون خط) */
+    radial-gradient(circle at center,
+        transparent 72%,
+        rgba(0,0,0,0.15) 88%,
+        rgba(0,0,0,0.25) 100%),
+
+    /* عمق سفلي */
     radial-gradient(circle at 70% 75%,
         rgba(0,0,0,0.35) 0%,
-        rgba(0,0,0,0.15) 35%,
-        transparent 65%),
+        rgba(0,0,0,0.12) 40%,
+        transparent 70%),
 
-    /* تدرج شفاف رئيسي */
-    radial-gradient(circle at 40% 30%,
+    /* طيف لوني خفيف جدًا */
+    radial-gradient(circle at 38% 28%,
         rgba(255,255,255,0.9) 0%,
-        rgba(255,255,255,0.5) 12%,
-        rgba(255,0,150,0.18) 28%,
-        rgba(0,200,255,0.18) 45%,
-        rgba(0,255,150,0.15) 60%,
-        rgba(255,255,255,0.05) 80%,
+        rgba(255,255,255,0.45) 12%,
+        rgba(255,0,150,0.12) 30%,
+        rgba(0,200,255,0.12) 48%,
+        rgba(0,255,150,0.10) 62%,
+        rgba(255,255,255,0.04) 80%,
         transparent 100%);
 
-    /* حافة طيفية رفيعة جدًا */
     box-shadow:
-        inset -30px -40px 70px rgba(0,0,0,0.35),
-        inset 25px 30px 60px rgba(255,255,255,0.25),
-        inset 0 0 6px rgba(255,0,200,0.25),
-        inset 0 0 12px rgba(0,200,255,0.15),
-        0 0 40px rgba(255,255,255,0.08);
+        inset -35px -45px 80px rgba(0,0,0,0.35),
+        inset 30px 35px 70px rgba(255,255,255,0.18),
+        0 0 35px rgba(255,255,255,0.06);
 
     backdrop-filter: blur(4px);
 }
 
-/* لمعة رئيسية */
+/* لمعة زجاجية واقعية */
 .bubble::before{
     content:"";
     position:absolute;
-    top:50px;
-    left:60px;
-    width:80px;
-    height:45px;
+    top:48px;
+    left:58px;
+    width:75px;
+    height:42px;
     border-radius:50%;
     background: radial-gradient(circle,
-        rgba(255,255,255,1) 0%,
-        rgba(255,255,255,0.7) 35%,
-        rgba(255,255,255,0.15) 70%,
+        rgba(255,255,255,0.95) 0%,
+        rgba(255,255,255,0.6) 35%,
+        rgba(255,255,255,0.1) 70%,
         transparent 100%);
     filter: blur(2px);
 }
