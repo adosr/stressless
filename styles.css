@@ -88,6 +88,58 @@ transition: transform linear, box-shadow var(--transition);
 box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
+/* الفقاعة */
+.bubble{
+    width:240px;
+    height:240px;
+    border-radius:50%;
+    position:relative;
+
+    background:
+    /* ظل داخلي عميق يعطي 3D */
+    radial-gradient(circle at 70% 75%,
+        rgba(0,0,0,0.35) 0%,
+        rgba(0,0,0,0.15) 35%,
+        transparent 65%),
+
+    /* تدرج شفاف رئيسي */
+    radial-gradient(circle at 40% 30%,
+        rgba(255,255,255,0.9) 0%,
+        rgba(255,255,255,0.5) 12%,
+        rgba(255,0,150,0.18) 28%,
+        rgba(0,200,255,0.18) 45%,
+        rgba(0,255,150,0.15) 60%,
+        rgba(255,255,255,0.05) 80%,
+        transparent 100%);
+
+    /* حافة طيفية رفيعة جدًا */
+    box-shadow:
+        inset -30px -40px 70px rgba(0,0,0,0.35),
+        inset 25px 30px 60px rgba(255,255,255,0.25),
+        inset 0 0 6px rgba(255,0,200,0.25),
+        inset 0 0 12px rgba(0,200,255,0.15),
+        0 0 40px rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(4px);
+}
+
+/* لمعة رئيسية */
+.bubble::before{
+    content:"";
+    position:absolute;
+    top:50px;
+    left:60px;
+    width:80px;
+    height:45px;
+    border-radius:50%;
+    background: radial-gradient(circle,
+        rgba(255,255,255,1) 0%,
+        rgba(255,255,255,0.7) 35%,
+        rgba(255,255,255,0.15) 70%,
+        transparent 100%);
+    filter: blur(2px);
+}
+
 .inner{
 font-size:26px;
 font-weight:600;
