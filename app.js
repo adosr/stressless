@@ -73,6 +73,7 @@ await wait(800);
 }
 
 async function phase(name,seconds,scale,cycle,totalCycles,startTime,totalTime){
+circle.classList.add("breathing");
 circle.style.transitionDuration=seconds+"s";
 circle.style.transform=`scale(${scale})`;
 
