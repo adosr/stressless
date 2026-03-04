@@ -88,65 +88,73 @@ transition: transform linear, box-shadow var(--transition);
 box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-/* الفقاعة */
 .bubble {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    position: relative;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    /* شفافية أساسية */
-    background: radial-gradient(circle at 35% 30%,
-        rgba(255,255,255,0.9) 0%,
-        rgba(255,255,255,0.4) 15%,
-        rgba(173,216,230,0.25) 30%,
-        rgba(255,192,203,0.2) 45%,
-        rgba(144,238,144,0.2) 60%,
-        rgba(255,255,255,0.15) 75%,
-        rgba(255,255,255,0.05) 100%
-    );
+  /* لون شفاف مع تدرج صابوني */
+  background: radial-gradient(circle at 30% 30%,
+      rgba(255,255,255,0.9) 0%,
+      rgba(255,255,255,0.4) 20%,
+      rgba(173,216,230,0.25) 40%,
+      rgba(255,192,203,0.2) 60%,
+      rgba(255,255,255,0.1) 80%,
+      rgba(255,255,255,0.05) 100%);
 
-    box-shadow:
-        inset -25px -35px 60px rgba(0,0,0,0.25),
-        inset 20px 25px 40px rgba(255,255,255,0.3),
-        0 0 40px rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
-    backdrop-filter: blur(3px);
+  box-shadow:
+      inset -20px -30px 60px rgba(0,0,0,0.25),
+      inset 20px 20px 40px rgba(255,255,255,0.6),
+      0 30px 60px rgba(0,0,0,0.3);
+
+  animation: float 5s ease-in-out infinite;
+  transition: 0.4s ease;
 }
 
-/* لمعة رئيسية */
+/* لمعان الفقاعة */
 .bubble::before {
-    content: "";
-    position: absolute;
-    top: 35px;
-    left: 45px;
-    width: 70px;
-    height: 40px;
-    background: radial-gradient(circle,
-        rgba(255,255,255,0.95) 0%,
-        rgba(255,255,255,0.6) 40%,
-        rgba(255,255,255,0.1) 70%,
-        transparent 100%
-    );
-    border-radius: 50%;
-    filter: blur(2px);
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle,
+      rgba(255,255,255,0.9),
+      rgba(255,255,255,0.3) 60%,
+      transparent 70%);
+  border-radius: 50%;
+  top: 40px;
+  left: 50px;
+  filter: blur(2px);
 }
 
-/* لمعة صغيرة إضافية */
-.bubble::after {
-    content: "";
-    position: absolute;
-    bottom: 40px;
-    right: 55px;
-    width: 35px;
-    height: 35px;
-    background: radial-gradient(circle,
-        rgba(255,255,255,0.8) 0%,
-        rgba(255,255,255,0.2) 60%,
-        transparent 100%
-    );
-    border-radius: 50%;
-    filter: blur(1px);
+/* النص داخل الفقاعة */
+.bubble span {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  text-shadow:
+      0 4px 10px rgba(0,0,0,0.5),
+      0 0 20px rgba(255,255,255,0.8);
+}
+
+/* حركة عائمة */
+@keyframes float {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-25px) scale(1.03); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+.bubble:hover {
+  transform: scale(1.07);
 }
 
 .inner{
