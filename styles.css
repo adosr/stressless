@@ -89,10 +89,9 @@ box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
 .bubble {
-  width: 280px;
-  height: 280px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,8 +111,8 @@ box-shadow: 0 20px 40px rgba(0,0,0,0.15);
       0 30px 60px rgba(0,0,0,0.25);
 
   animation: float 6s ease-in-out infinite;
-  transition: transform 1s cubic-bezier(.4,0,.2,1),
-              box-shadow 0.6s ease;
+transition: transform linear, box-shadow var(--transition);
+box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
 /* وضع التنفس */
