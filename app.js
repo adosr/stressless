@@ -133,9 +133,9 @@ controls.classList.remove("hidden");
 stopBtn.classList.add("hidden");
 display.innerText=text[lang].finished;
 info.innerText="";
-circle.classList.remove("breathing");
-circle.style.transitionDuration="2.1s"; 
+circle.style.transitionDuration="0.9s"; 
 circle.style.transform="scale(1)";
+circle.classList.remove("breathing");
 }
 
 startBtn.addEventListener("click",start);
