@@ -118,7 +118,7 @@ if(totalCycles && cycles>=totalCycles) break;
 
 cycles++;
 
-if(!await phase(text[lang].inhale,inhale,1.8,cycles,totalCycles,startTime,totalTime)) break;
+if(!await phase(text[lang].inhale,inhale,1,cycles,totalCycles,startTime,totalTime)) break;
 if(!await phase(text[lang].hold,hold,1.8,cycles,totalCycles,startTime,totalTime)) break;
 if(!await phase(text[lang].exhale,exhale,1,cycles,totalCycles,startTime,totalTime)) break;
 }
@@ -132,7 +132,6 @@ controls.classList.remove("hidden");
 stopBtn.classList.add("hidden");
 display.innerText=text[lang].finished;
 info.innerText="";
-circle.classList.remove("breathing");
 circle.style.transform="scale(1)";
 }
 
