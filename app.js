@@ -133,7 +133,7 @@ controls.classList.remove("hidden");
 stopBtn.classList.add("hidden");
 display.innerText=text[lang].finished;
 info.innerText="";
-circle.style.transitionDuration=seconds+"s";
+circle.style.transitionDuration="4s";
 circle.style.transform="scale(1)";
 circle.classList.remove("breathing");
 }
