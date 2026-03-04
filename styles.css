@@ -153,32 +153,47 @@ box-shadow: 0 20px 40px rgba(0,0,0,0.15);
   pointer-events: none;
 }
 
-/* النص داخل الفقاعة (إحساس مغمور داخل سائل) */
 .bubble span {
   position: relative;
-  color: var(--text);
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
   text-align: center;
   padding: 20px;
+  color: var(--text);
+
+  /* عمق داخلي */
+  transform: translateZ(0);
+  will-change: transform, filter;
+
+  /* إحساس انكسار داخل سائل */
+  filter: 
+    contrast(120%)
+    brightness(105%)
+    saturate(110%);
 
   text-shadow:
-      0 2px 8px rgba(0,0,0,0.25);
+    0 2px 6px rgba(0,0,0,0.2);
 
-  mix-blend-mode: overlay;
-  filter: contrast(110%) brightness(110%);
-  transform: perspective(300px) translateZ(10px);
-  transition: transform 1s cubic-bezier(.4,0,.2,1);
+  transition: 
+    transform 1.2s cubic-bezier(.4,0,.2,1),
+    filter 1.2s ease;
 }
 
-/* تشويه خفيف أثناء الشهيق */
+/* أثناء الشهيق */
 .bubble.inhale span {
-  transform: perspective(300px) scale(1.08) translateZ(20px);
+  transform: scale(1.08) skewY(1deg);
+  filter: contrast(130%) brightness(110%);
 }
 
-/* رجوع طبيعي أثناء الزفير */
+/* أثناء الثبات */
+.bubble.hold span {
+  transform: scale(1.05);
+}
+
+/* أثناء الزفير */
 .bubble.exhale span {
-  transform: perspective(300px) scale(0.98) translateZ(5px);
+  transform: scale(0.96) skewY(-1deg);
+  filter: contrast(110%) brightness(100%);
 }
 
 /* حركة عائمة */
