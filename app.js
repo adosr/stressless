@@ -134,6 +134,7 @@ controls.classList.remove("hidden");
 stopBtn.classList.add("hidden");
 display.innerText=text[lang].finished;
 info.innerText="";
+circle.classList.remove("breathing");
 circle.style.transform="scale(1)";
 }
 
