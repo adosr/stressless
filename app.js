@@ -78,12 +78,15 @@ circle.classList.add("breathing");
 circle.style.transitionDuration = seconds + "s";
 circle.style.transform = `scale(${scale})`;
 
-circle.classList.remove("inhale","exhale");
+circle.classList.remove("inhale","exhale","hold");
 
 if(name === text[lang].inhale){
     circle.classList.add("inhale");
 }
-if(name === text[lang].exhale){
+else if(name === text[lang].hold){
+    circle.classList.add("hold");
+}
+else if(name === text[lang].exhale){
     circle.classList.add("exhale");
 }
 
@@ -111,6 +114,10 @@ running=true;
 controls.classList.add("hidden");
 stopBtn.classList.remove("hidden");
 
+circle.style.transition = "transform 1.2s cubic-bezier(.4,0,.2,1)";
+circle.style.transform = "scale(1)";
+await wait(300);
+   
 await countdown();
 
 const [inhale,hold,exhale]=document.getElementById("exercise").value.split(",").map(Number);
@@ -131,7 +138,7 @@ if(totalCycles && cycles>=totalCycles) break;
 
 cycles++;
 
-if(!await phase(text[lang].inhale,inhale,1.8,cycles,totalCycles,startTime,totalTime)) break;
+if(!await phase(text[lang].inhale,inhale,1.35,cycles,totalCycles,startTime,totalTime)) break;
 if(!await phase(text[lang].hold,hold,1.8,cycles,totalCycles,startTime,totalTime)) break;
 if(!await phase(text[lang].exhale,exhale,1,cycles,totalCycles,startTime,totalTime)) break;
 }
