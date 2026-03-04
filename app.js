@@ -135,7 +135,6 @@ display.innerText=text[lang].finished;
 info.innerText="";
 circle.style.transitionDuration="4s";
 circle.style.transform="scale(1)";
-circle.classList.remove("breathing");
 }
 
 startBtn.addEventListener("click",start);
