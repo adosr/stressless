@@ -62,10 +62,8 @@ function wait(ms){ return new Promise(r=>setTimeout(r,ms)); }
 
 async function countdown(){
 for(let i=3;i>0;i--){
-display.style.transform="scale(1.2)";
 display.innerText=i;
 await wait(700);
-display.style.transform="scale(1)";
 await wait(300);
 }
 display.innerText=text[lang].ready;
