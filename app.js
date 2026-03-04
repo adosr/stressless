@@ -118,7 +118,7 @@ if(totalCycles && cycles>=totalCycles) break;
 
 cycles++;
 
-if(!await phase(text[lang].inhale,4,1.8,cycles,totalCycles,startTime,totalTime)) break;
+if(!await phase(text[lang].inhale,inhale,1.8,cycles,totalCycles,startTime,totalTime)) break;
 if(!await phase(text[lang].hold,hold,1.8,cycles,totalCycles,startTime,totalTime)) break;
 if(!await phase(text[lang].exhale,exhale,1,cycles,totalCycles,startTime,totalTime)) break;
 }
