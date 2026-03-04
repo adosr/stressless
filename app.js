@@ -73,8 +73,19 @@ await wait(800);
 }
 
 async function phase(name,seconds,scale,cycle,totalCycles,startTime,totalTime){
-circle.style.transitionDuration=seconds+"s";
-circle.style.transform=`scale(${scale})`;
+
+circle.classList.add("breathing");
+circle.style.transitionDuration = seconds + "s";
+circle.style.transform = `scale(${scale})`;
+
+circle.classList.remove("inhale","exhale");
+
+if(name === text[lang].inhale){
+    circle.classList.add("inhale");
+}
+if(name === text[lang].exhale){
+    circle.classList.add("exhale");
+}
 
 for(let i=seconds;i>0;i--){
 display.innerText=`${name} ${i}`;
@@ -89,6 +100,7 @@ info.innerText=`${text[lang].cycle} ${cycle}/${totalCycles}`;
 await wait(1000);
 if(!running) return false;
 }
+
 return true;
 }
 
@@ -129,10 +141,14 @@ stop();
 
 function stop(){
 running=false;
+
 controls.classList.remove("hidden");
 stopBtn.classList.add("hidden");
+
 display.innerText=text[lang].finished;
 info.innerText="";
+
+circle.classList.remove("breathing","inhale","exhale");
 circle.style.transform="scale(1)";
 }
 
