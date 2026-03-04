@@ -135,6 +135,12 @@ display.innerText=text[lang].finished;
 info.innerText="";
 circle.style.transitionDuration="4s";
 circle.style.transform="scale(1)";
+circle.addEventListener("transitionend", function handler(e){
+  if(e.propertyName === "transform"){
+    circle.classList.remove("breathing");
+    circle.removeEventListener("transitionend", handler);
+  }
+});
 }
 
 startBtn.addEventListener("click",start);
